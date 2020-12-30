@@ -1,0 +1,22 @@
+@import url(./__list/elements__list.css);
+@import url(./__item/elements__item.css);
+@import url(./__text/elements__text.css);
+@import url(./__text/_count/elements__text_count.css);
+@import url(./__text-title/elements__text-title.css);
+@import url(./__delete/elements__delete.css);
+@import url(./__delete/_visible/elements__delete_visible.css);
+@import url(./__text-like/elements__text-like.css);
+@import url(./__text-likecounter/elements__text-likecounter.css);
+@import url(./__text-like/_active/elements__text-like_active.css);
+@import url(./__item-img/elements__item-img.css);
+
+.elements {
+  padding-top: 51px;
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 425px) {
+  .elements {
+    padding-top: 36px;
+  }
+}

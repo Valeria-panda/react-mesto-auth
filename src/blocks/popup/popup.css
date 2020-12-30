@@ -1,0 +1,25 @@
+@import url(./__background/popup__background.css);
+@import url(./__background/_photo/popup__bakground_photo.css);
+@import url(./__form/popup__form.css);
+@import url(./__input/popup__input.css);
+@import url(./__input/_type/_error/popup__input_type_error.css);
+@import url(./__title/popup__title.css);
+@import url(./__title/_photo/popup__title_photo.css);
+@import url(./__button/popup__button.css);
+@import url(./__submit/popup__submit.css);
+@import url(./__submit/_inactive/popup__submit_inactive.css);
+@import url(./__image/popup__image.css);
+@import url(./__photo-container/popup__photo-container.css);
+@import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_visible/popup__input-error_visible.css);
+@import url(./__input-label/popup__input-label.css);
+
+
+
+.popup {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+

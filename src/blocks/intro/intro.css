@@ -1,0 +1,10 @@
+@import url(./__title/intro__title.css);
+@import url(./__subtitle/intro__subtitle.css);
+
+.intro {
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

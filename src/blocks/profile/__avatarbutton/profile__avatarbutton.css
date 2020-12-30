@@ -1,0 +1,10 @@
+.profile__avatarbutton{
+    outline: none;
+    background-image: url(../../../images/editprofileicon.svg);
+    width: 26px;
+    height: 26px;
+    border: none;
+    padding: 0;
+    background-color: Transparent;
+    cursor: pointer;
+}

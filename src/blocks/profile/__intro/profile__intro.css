@@ -1,0 +1,13 @@
+.profile__intro {
+  display: flex;
+  justify-content: center;
+  padding-left: 3.75px;
+  padding-top: 18px;
+  min-width: 336px;
+}
+@media screen and (max-width: 425px) {
+  .profile__intro {
+    min-width: 280px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,6 @@
+.elements__text_count{
+    display: flex;
+    flex-direction: column;
+    min-width: 21px;
+    height: 34px;
+}

@@ -1,0 +1,17 @@
+.intro__subtitle {
+  max-width: 318px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  margin: 0;
+  margin-bottom: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 425px) {
+  .intro__subtitle {
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 0;
+  }
+}

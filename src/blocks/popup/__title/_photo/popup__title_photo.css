@@ -1,0 +1,12 @@
+.popup__title_photo {
+  color: #ffffff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 0;
+  padding-top: 10px;
+  max-width: 291px;
+  max-height: 12px;
+}

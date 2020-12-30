@@ -1,0 +1,30 @@
+.popup__button {
+  outline: none;
+  background-image: url(../../../images/cross.svg);
+  border: none;
+  box-shadow: none;
+  min-height: 40.7px;
+  max-width: 40.7px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  background-color: transparent;
+  align-self: flex-end;
+  margin-right: -40px;
+  margin-top: -40px;
+  cursor: pointer;
+}
+.popup__button:hover {
+  opacity: 0.6;
+  transition: ease-in-out 0.3s;
+}
+@media screen and (max-width:385px){
+  .popup__button{
+  margin-right: 0;
+  min-height: 30px;
+  max-width: 30px;
+  margin-right: -30px;
+  margin-top: -30px;
+  }
+}
