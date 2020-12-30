@@ -1,7 +1,7 @@
 import { React } from "react";
-import AuthorizeForm from 'AuthorizeForm';
+import AuthorizeForm from './AuthorizeForm';
 
-function login(){
+function Login(){
     
 
     return(
@@ -11,7 +11,7 @@ function login(){
             path='/sign-in'
             loginText='Ещё не зарегистрированы?'
             loginLink='Регистрация'
-            onSubmit={submitForm}
+            onSubmit={onSubmit}
             autoCompleteEmail='email'
             autoCompletePassword='current-password'
         />

@@ -3,7 +3,7 @@ import React from 'react';
 import Form from './Form';
 
 function AuthorizeForm({title, submitButtonText, path,
-    loginText, loginLink, onSubmit, autoCompleteEmail, autoCompletePassword}){
+    loginText, loginLink, onSubmit, autoCompleteEmail, autoCompletePassword, handleChange, formId, email,pass}){
     return(
         <section className="authorize">
             <Form
@@ -15,7 +15,7 @@ function AuthorizeForm({title, submitButtonText, path,
                 path={path}
                 loginText={loginText}
                 loginLink={loginLink}
-                onSubmit={handleSubmit}
+                onSubmit={onSubmit}
             >
             <lable htmlFor="email" className="authorize__form-label">
                 <input 

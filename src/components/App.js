@@ -13,6 +13,9 @@ import AddPlacePopup from '../components/AddPlacePopup.js';
 import ConfirmPopup from './ConfirmPopup.js';
 import ProtectedRoute from './ProtectedRoute';
 import { CurrentUserContext }  from '../contexts/CurrentUserContext.js'
+import Login from './Login';
+import Register from './Register';
+
 
 function App() {
 

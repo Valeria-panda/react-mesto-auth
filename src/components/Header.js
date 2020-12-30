@@ -1,10 +1,11 @@
 import React from 'react';
 import headerLogo from '../images/headerlogo.svg';
-import HeaderAuthorizeInfo from './HeaderAuthorizeInfo';
+import { Link } from 'react-router-dom';
+// import HeaderAuthorizeInfo from './HeaderAuthorizeInfo';
 
 function Header
   ({
-    loggedIn, email, signOut
+    loggedIn, email, signOut, pathname
   }) 
  
   {
@@ -14,9 +15,9 @@ function Header
   return (
     <header className="header section">
      <img className="header__logo-image" src={headerLogo} alt="логотип сайта"/>
-     {loggedIn  ? (<><HeaderAuthorizeInfo email={email} signOut={signOut}/></>)
+     {/* {loggedIn  ? (<><HeaderAuthorizeInfo email={email} signOut={signOut}/></>)
                 : (<Link to={enterPath} className="link header__link">{enter}</Link>)
-                }
+                } */}
     </header>
   );
 }
