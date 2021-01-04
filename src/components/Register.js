@@ -1,7 +1,10 @@
 import { React } from "react";
 import AuthorizeForm from './AuthorizeForm';
 
-function Register(){
+function Register({ onRegister }){
+    function submitForm(password, email) {
+        onRegister(password, email);
+      }
     
 
     return(
@@ -11,7 +14,7 @@ function Register(){
             path='/sign-up'
             loginText='Ещё не зарегистрированы?'
             loginLink='Регистрация'
-            onSubmit={onSubmit}
+            onSubmit={submitForm}
         />
     )
 }

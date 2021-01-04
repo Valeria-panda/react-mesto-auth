@@ -1,23 +1,29 @@
 import React from 'react';
 import headerLogo from '../images/headerlogo.svg';
-import { Link } from 'react-router-dom';
-// import HeaderAuthorizeInfo from './HeaderAuthorizeInfo';
+
+import { Link, useLocation } from 'react-router-dom';
+import AuthInfo from './AuthInfo';
 
 function Header
   ({
-    loggedIn, email, signOut, pathname
+    loggedIn, email, signOut
   }) 
  
   {
-    const enter = `${pathname === '/sign-in' ? 'Регистрация' : 'Войти'}`;
-    const enterPath = `${pathname === '/sign-in' ? '/sign-up' : '/sign-in'}`;
+
+  const { pathname } = useLocation();
+  const linkText = `${pathname === '/sign-in' ? 'Регистрация' : 'Войти'}`;
+  const linkPath = `${pathname === '/sign-in' ? '/sign-up' : '/sign-in'}`;
 
   return (
     <header className="header section">
      <img className="header__logo-image" src={headerLogo} alt="логотип сайта"/>
-     {/* {loggedIn  ? (<><HeaderAuthorizeInfo email={email} signOut={signOut}/></>)
-                : (<Link to={enterPath} className="link header__link">{enter}</Link>)
-                } */}
+     {loggedIn
+        ? (<>
+          <AuthInfo email={email} signOut={signOut} />
+        </>)
+        : (<Link to={linkPath} className="link header__link">{linkText}</Link>)
+      }
     </header>
   );
 }

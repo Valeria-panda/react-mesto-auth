@@ -1,6 +1,9 @@
 
 import React, { useState }  from 'react';
-import {Route, Switch, Redirect } from 'react-router-dom';
+import {
+  Route, Switch, useLocation, Redirect, useHistory,
+} from 'react-router-dom';
+
 import '../index.css';
 import { api } from '../utils/Api.js';
 import Header from '../components/Header.js';
@@ -12,9 +15,14 @@ import EditProfilePopup from '../components/EditProfilePopup.js';
 import AddPlacePopup from '../components/AddPlacePopup.js';
 import ConfirmPopup from './ConfirmPopup.js';
 import ProtectedRoute from './ProtectedRoute';
+import InfoTooltip from './InfoTooltip';
+import * as auth from '../utils/auth';
 import { CurrentUserContext }  from '../contexts/CurrentUserContext.js'
 import Login from './Login';
 import Register from './Register';
+import resolvePath from '../images/resolve.svg';
+import rejectPath from '../images/reject.svg';
+
 
 
 function App() {
@@ -35,7 +43,66 @@ function App() {
   const [isLoading, setLoading] = useState(false);
 
   // авторизация
-  const [loggedIn, setLoggedIn] = (false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isAuthInfoOpened, setAuthInfoOpened] = useState(false);
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  const [message, setMessage] = useState({
+    iconPath: '',
+    text: ''
+  });
+  const location = useLocation();
+  const history = useHistory();
+  // const escape = require('escape-html');
+  // Проверить токен
+  React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      auth.getContent(jwt)
+        .then((res) => {
+          setLoggedIn(true);
+          setEmail(res.data.email);
+          history.push('/');
+        })
+        .catch(err => console.log(err));
+    }
+  }, [history]);
+
+  // Регистрация
+  function handleRegister(password, email) {
+    auth.register(escape(password), email)
+      .then(() => {
+        setMessage({ iconPath: resolvePath, text: 'Вы успешно зарегистрировались!' });
+      })
+      .catch((err) => setMessage({ iconPath: rejectPath, text: err.message }));
+    setInfoTooltipOpen(true);
+  }
+
+  // Авторизация
+  function handleLogin(password, email) {
+    auth.authorize(escape(password), email)
+      .then((data) => {
+        auth.getContent(data)
+          .then((res) => {
+            setEmail(res.data.email);
+          })
+          .catch(err => console.log(err));
+        setLoggedIn(true);
+        setMessage({ iconPath: resolvePath, text: 'Вы успешно вошли в приложение!' });
+        history.push('/');
+      })
+      .catch((err) => setMessage({ iconPath: rejectPath, text: err.message }))
+    setInfoTooltipOpen(true);
+  }
+
+  // Выход
+  function handleSignOut() {
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
+    setEmail('');
+    history.push('/sign-in');
+  }
+
   //данные о текущем пользователе
   React.useEffect(() => {
     api
@@ -157,32 +224,43 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
         <div className="root">
           <div className="page">
-            <Header/>
-            <Switch>
-              <Route>
-                {/* при октрытии страницы проверить авторизован ли пол-ель? если нет,  переадресуем его логинится */}
-                {loggedIn ? <Redirect to='/'/> : <Redirect to='/login'/>}
-              </Route>
-             <ProtectedRoute path='/main' loggedIn={loggedIn} component={Main}/>
-             {/* роут авторизации пользователя(входа с паролем)*/}
-             <Route path='/login'>
-               <Login/>
-             </Route>
-             {/* роут регистрации пользователя*/}
-             <Route path='/register'>
-               <Register/>
-             </Route>
-            </Switch>
-
-            <Main  
-                onEditAvatar={handleEditAvatarClick}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                cards={cards}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete} 
+            <Header loggedIn={loggedIn}
+                    locaction={location}
+                    email={email}
+                    signOut={handleSignOut}
+                    isAuthInfoOpened={isAuthInfoOpened}
             />
+            <Switch>
+      
+            <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
+                    cards={cards}
+                    onCardClick={handleCardClick}
+                    onCardLike={handleCardLike}
+                    onCardDelete={handleCardDelete}
+                    onEditProfile={handleEditProfileClick}
+                    onAddPlace={handleAddPlaceClick}
+                    onEditAvatar={handleEditAvatarClick}
+            />
+          <Route path='/sign-in'>
+            <Login onLogin={handleLogin} />
+          </Route>
+          <Route path='/sign-up'>
+            <Register onRegister={handleRegister} />
+          </Route>
+          <Route>
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+          </Route>
+        </Switch>
+
+        <Footer />
+
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          onClose={closeAllPopups}
+          loggedIn={loggedIn}
+          message={message}
+        />
+
             <EditProfilePopup
               isOpen={isEditProfilePopupOpen}
               onClose={closeAllPopups}
@@ -212,7 +290,7 @@ function App() {
             isOpen={selectedCard.isImageOpen}
             onClose={closeAllPopups}
             />
-            <Footer />
+            
           </div>
         </div>
     </CurrentUserContext.Provider>

@@ -45,7 +45,6 @@ function EditProfilePopup(props) {
         <label htmlFor='name' className="popup__input-label">
         <input  
           name="name"
-          type='text'
           value={name || ''}
           className="popup__input popup__input_name" 
           type="text" 

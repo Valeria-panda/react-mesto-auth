@@ -59,7 +59,7 @@ function AddPlacePopup({isOpen,onClose, onAddPlace, isLoading }) {
              />
             <span className='popup__input-error' 
             
-          id='name-error' id="name-error"></span>
+          id='name-error'></span>
         </label>
         <label htmlFor='link' className="popup__input-label">   
           <input 
