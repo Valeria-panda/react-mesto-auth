@@ -13,6 +13,7 @@ function PopupWithForm
     submitButtonText,
     disabled,
     isLoading,
+    noConfirm
   })
   {
     return(
@@ -30,6 +31,7 @@ function PopupWithForm
             children={children}
             disabled={disabled}
             submitButtonText={submitButtonText}
+            noConfirm={noConfirm}
           ></Form>
 
       </section>

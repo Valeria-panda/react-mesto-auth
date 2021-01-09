@@ -10,9 +10,7 @@ function Login({ onLogin }){
         <AuthorizeForm
             title='Вход'
             submitButtonText='Войти'
-            path='/sign-in'
-            loginText='Ещё не зарегистрированы?'
-            loginLink='Регистрация'
+            path='/sign-up'
             onSubmit={submitForm}
             autoCompleteEmail='email'
             autoCompletePassword='current-password'

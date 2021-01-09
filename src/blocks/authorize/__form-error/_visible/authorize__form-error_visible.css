@@ -1,0 +1,12 @@
+.authorize__form-error_visible{
+    display: block;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: #ff0000;
+    padding: 0;
+    position: absolute;
+    top: 61px;
+    left: 0;
+}

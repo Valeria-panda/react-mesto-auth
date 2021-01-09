@@ -12,7 +12,6 @@
   border-radius: 2px;
   box-sizing: border-box;
   cursor: pointer;
-  order: 1;
 }
 
 .popup__submit:hover {

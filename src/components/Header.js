@@ -12,6 +12,7 @@ function Header
   {
 
   const { pathname } = useLocation();
+
   const linkText = `${pathname === '/sign-in' ? 'Регистрация' : 'Войти'}`;
   const linkPath = `${pathname === '/sign-in' ? '/sign-up' : '/sign-in'}`;
 

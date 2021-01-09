@@ -5,8 +5,8 @@
 @import url(./__form-link/authorize__form-link.css);
 @import url(./__form-quest/authorize__form-quest.css);
 @import url(./__form-title/authorize__form-title.css);
+@import url(./__form-error/_visible/authorize__form-error_visible.css);
 
 .authorize{
     background: #000000;
-    height: 100vh;
 }

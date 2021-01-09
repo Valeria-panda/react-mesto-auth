@@ -4,7 +4,7 @@ function AuthInfo({ email, signOut }) {
   return (
     <div className='auth-info'>
       <span>{email}</span>
-      <button className='auth-info__signout' onClick={signOut}>Выйти</button>
+      <a href='/sign-in' className='header__link' onClick={signOut}>Выйти</a>
     </div>
   );
 }

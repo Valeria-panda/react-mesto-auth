@@ -1,10 +1,13 @@
-.authorize__form-title{
+.infoToolTip__text{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
     text-align: center;
-    color: #FFFFFF;   
-    margin-bottom: 20px;
+    color: #000000;
+    max-width: 358px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    margin-top: 32px;
 }

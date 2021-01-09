@@ -13,8 +13,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
         const [passwordError, setPasswordError] = useState('');
         const [emailValid, setEmailValid] = useState(false);
         const [passwordValid, setPasswordValid] = useState(false);
-        const [inputType, setInputType] = useState('password');
-      
+
         const emailRef = useRef();
         const passwordRef = useRef();
       
@@ -30,27 +29,24 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
           setEmailError(emailRef.current.validationMessage);
           setPasswordError(passwordRef.current.validationMessage);
           !emailRef.current.validity.valid ? setEmailValid(false) : setEmailValid(true);
-          !passwordRef.current.validity.valid
-            ? setPasswordValid(false)
-            : setPasswordValid(true);
+          !passwordRef.current.validity.valid ? setPasswordValid(false) : setPasswordValid(true);
         }
+
         function handleSubmit(evt) {
             evt.preventDefault();
             if (!email && !password) return;
             onSubmit(password, email);
             setEmail('');
             setPassword('');
-          }
-          function handleShowPassword() {
-            inputType === 'password' ? setInputType('text') : setInputType('password');
-          }
+        }
+
     
     
         return(
         <section className="authorize">
             <Form
                 formId={formId}
-                formName='entrance'
+                formName='signin'
                 title={title}
                 submitButtonText={submitButtonText}
                 isPopup={false}
@@ -61,6 +57,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
             >
             <lable htmlFor="email" className="authorize__form-label">
                 <input 
+                    ref={emailRef}
                     id="email" 
                     type="email" 
                     placeholder="Email" 
@@ -74,7 +71,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
                     onChange={handleChange}
                 />
 
-            <span className={`form__input-error ${!emailValid && 'form__input-error_active'}`} id='email-error'>
+            <span className={`popup__input-error ${!emailValid && 'authorize__form-error_visible'}`} id='email-error'>
                 {emailError}
             </span>
 
@@ -82,6 +79,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
 
             <lable htmlFor="password" className="authorize__form-label">
                 <input 
+                    ref={passwordRef}
                     id="password" 
                     type="password" 
                     placeholder="Пароль" 
@@ -94,10 +92,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
                     required
                     onChange={handleChange}
                 />
-                <button type='button' className={`form__input_password form__input_password_${inputType} button`}
-                        onClick={handleShowPassword}
-                        onKeyDown={(evt) => evt.preventDefault}></button>
-                <span className={`form__input-error ${!passwordValid && 'form__input-error_active'}`}
+                <span className={`popup__input-error ${!passwordValid && 'authorize__form-error_visible'}`}
                         id='password-error'>
                     {passwordError}
                 </span>

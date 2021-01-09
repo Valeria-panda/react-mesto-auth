@@ -11,9 +11,10 @@
   background-size: cover;
   background-color: transparent;
   align-self: flex-end;
-  margin-right: -40px;
-  margin-top: -40px;
+  margin-right: -32px;
+  margin-top: -31px;
   cursor: pointer;
+  position: absolute;
 }
 .popup__button:hover {
   opacity: 0.6;

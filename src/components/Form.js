@@ -6,7 +6,6 @@ function Form
     formName,
     formId,
     onSubmit,
-    onClose,
     title,
     children,
     isLoading,
@@ -14,7 +13,10 @@ function Form
     isPopup,
     path,
     loginText,
-    loginLink
+    loginLink,
+    noConfirm,
+    disabled,
+    onClose
 })
     {
         return(
@@ -23,12 +25,15 @@ function Form
             formId={formId}
             onSubmit={onSubmit}
             className={`${isPopup && 'popup__form'} popup__form_type_${formName}`}>
-                <h2 className="popup__title">{title}</h2>
+                
+                <h2 className={`${!isPopup && 'authorize__form-title'} popup__title`}>{title}</h2>
                 {children}
 
-                <button type="submit" className={`popup__submit ${isLoading && 'popup__submit'}`}>
+                {!noConfirm
+          && (<button type="submit" className={`${!isPopup && 'authorize__form-button'} popup__submit`}
+                        disabled={disabled}>
                         {isLoading ? `Сохранение...` : submitButtonText}
-                </button>
+                </button>)}
 
                 {isPopup && (<button type="reset" className="popup__button" onClick={onClose}/>)}
 

@@ -40,7 +40,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({})
   const [cardToDelete, setCardToDelete] = useState({});
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState();
 
   // авторизация
   const [loggedIn, setLoggedIn] = useState(false);
@@ -53,7 +53,7 @@ function App() {
   });
   const location = useLocation();
   const history = useHistory();
-  // const escape = require('escape-html');
+
   // Проверить токен
   React.useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -171,6 +171,7 @@ function App() {
     setAddPlacePopupOpen(false);
     setSelectedCard({});
     setConfirmPopupOpen(false);
+    setInfoTooltipOpen(false)
   }
   //Обновить аватар
   function handleUpdateAvatar(newAvatar) {
@@ -224,6 +225,8 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
         <div className="root">
           <div className="page">
+          {(loggedIn && isAuthInfoOpened)}
+
             <Header loggedIn={loggedIn}
                     locaction={location}
                     email={email}
