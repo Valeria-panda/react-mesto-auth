@@ -21,8 +21,8 @@ function Form
     {
         return(
             <form 
-            formName={formName} 
-            formId={formId}
+            name={formName} 
+            id={formId}
             onSubmit={onSubmit}
             className={`${isPopup && 'popup__form'} popup__form_type_${formName}`}>
                 

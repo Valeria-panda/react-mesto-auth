@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import Form from './Form';
 
 function AuthorizeForm({onSubmit, title, submitButtonText, path,
-    loginText, loginLink, autoCompleteEmail, autoCompletePassword, formId}){
+    loginText, loginLink, autoCompleteEmail, autoCompletePassword}){
        
        
        
@@ -45,7 +45,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
         return(
         <section className="authorize">
             <Form
-                formId={formId}
+                id='authForm'
                 formName='signin'
                 title={title}
                 submitButtonText={submitButtonText}
@@ -55,7 +55,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
                 loginLink={loginLink}
                 onSubmit={handleSubmit}
             >
-            <lable htmlFor="email" className="authorize__form-label">
+            <label htmlFor="email" className="authorize__form-label">
                 <input 
                     ref={emailRef}
                     id="email" 
@@ -75,9 +75,9 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
                 {emailError}
             </span>
 
-            </lable>
+            </label>
 
-            <lable htmlFor="password" className="authorize__form-label">
+            <label htmlFor="password" className="authorize__form-label">
                 <input 
                     ref={passwordRef}
                     id="password" 
@@ -96,7 +96,7 @@ function AuthorizeForm({onSubmit, title, submitButtonText, path,
                         id='password-error'>
                     {passwordError}
                 </span>
-            </lable>
+            </label>
             
             </Form>
 

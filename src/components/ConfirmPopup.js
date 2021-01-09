@@ -10,8 +10,8 @@ function ConfirmPopup({isOpen, onClose, onConfirmDelete, isLoading}) {
 
     return (
       <PopupWithForm
-        formName='popup'
-        formId = 'popup-deleteCards'
+        name='popup'
+        id = 'popup-deleteCards'
         title='Вы уверенны?'
         submitButtonText='Да'
         isOpen={isOpen}

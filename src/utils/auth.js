@@ -1,9 +1,9 @@
 
-export const BASE_URL = 'http://www.api.s-mesto.students.nomoreparties.co';
+export const baseUrl = 'https://auth.nomoreparties.co';
 
-// Отправляем запрос за регистрацию
+// запрос на регистрацию
 export const register = (password, email) => {
-    return fetch(`${BASE_URL}/auth/local/register`, {
+    return fetch(`${baseUrl}/signup`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -24,7 +24,7 @@ export const register = (password, email) => {
 // Отправляем запрос за авторизацию
 
   export const authorize = (password, email) => {
-    return fetch(`${BASE_URL}/auth/signin`, {
+    return fetch(`${baseUrl}/signin`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -45,7 +45,7 @@ export const register = (password, email) => {
 // Отправляем запрос за получение токена
 
   export const getContent = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
+    return fetch(`${baseUrl}/users/me`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

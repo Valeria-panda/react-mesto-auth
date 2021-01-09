@@ -33,8 +33,8 @@ function EditProfilePopup(props) {
 
     return (
       <PopupWithForm
-        formName='popup'
-        formId = 'popup-edit-form'
+        name='popup'
+        id = 'popup-edit-form'
         title='Редактировать профиль'
         submitButtonText='Сохранить'
         isOpen={isOpen}

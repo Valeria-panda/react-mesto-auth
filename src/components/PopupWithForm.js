@@ -21,9 +21,9 @@ function PopupWithForm
           <div className="popup__background"></div>
 
           <Form
-            formId={formId}
+            id={formId}
             isPopup={true}
-            formName={formName}
+            name={formName}
             onSubmit={onSubmit}
             onClose={onClose}
             isLoading={isLoading}

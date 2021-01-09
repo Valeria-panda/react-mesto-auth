@@ -22,7 +22,7 @@ import Login from './Login';
 import Register from './Register';
 import resolvePath from '../images/resolve.svg';
 import rejectPath from '../images/reject.svg';
-
+import loading from '../images/loading.svg';
 
 
 function App() {
@@ -48,11 +48,12 @@ function App() {
   const [isAuthInfoOpened, setAuthInfoOpened] = useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [message, setMessage] = useState({
-    iconPath: '',
+    iconPath: loading,
     text: ''
   });
   const location = useLocation();
   const history = useHistory();
+  const escape = require('escape-html');
 
   // Проверить токен
   React.useEffect(() => {
@@ -73,6 +74,7 @@ function App() {
     auth.register(escape(password), email)
       .then(() => {
         setMessage({ iconPath: resolvePath, text: 'Вы успешно зарегистрировались!' });
+        history.push('/sign-in');
       })
       .catch((err) => setMessage({ iconPath: rejectPath, text: err.message }));
     setInfoTooltipOpen(true);
