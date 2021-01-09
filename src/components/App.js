@@ -40,7 +40,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({})
   const [cardToDelete, setCardToDelete] = useState({});
-  const [isLoading, setLoading] = useState();
+  const [isLoading, setLoading] = useState(false);
 
   // авторизация
   const [loggedIn, setLoggedIn] = useState(false);
@@ -215,12 +215,15 @@ function App() {
       setLoading(true);
       api
         .postNewCard(card)
-        .then((newCard) => setCards([newCard, ...cards]))
+        .then((newCard) => {
+          setCards([newCard, ...cards]);
+          closeAllPopups();
+        })
         .catch((err) =>
           console.log(`Ошибка при добавлении новой карточки: ${err}`)
         )
         .finally(() => setLoading(false));
-      closeAllPopups();
+      
   }
     
   return (
@@ -249,6 +252,7 @@ function App() {
           <Route path='/sign-in'>
             <Login onLogin={handleLogin} />
           </Route>
+         
           <Route path='/sign-up'>
             <Register onRegister={handleRegister} />
           </Route>
