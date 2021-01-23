@@ -1,7 +1,8 @@
-import BadRequest from '../components/BadRequest';
-import NotAuth from '../components/NotAuth';
+import BadRequestError from '../errors/badRequestError';
+import NotAuthorizedError from '../errors/notAuthorizedError';
 
-export const baseUrl = 'https://auth.nomoreparties.co';
+// export const baseUrl = 'https://auth.nomoreparties.co';
+export const baseUrl = 'http://www.api.lera.students.nomoredomains.rocks';
 
 // запрос на регистрацию
 
@@ -17,9 +18,9 @@ export const register = (password, email) => fetch(`${baseUrl}/signup`, {
       return res.json()
         .then((err) => {
           if (err.error) {
-            throw new BadRequest(err.error);
+            throw new BadRequestError(err.error);
           } else {
-            throw new BadRequest(err.message);
+            throw new BadRequestError(err.message);
           }
         });
     }
@@ -37,10 +38,10 @@ export const register = (password, email) => fetch(`${baseUrl}/signup`, {
   })
     .then((res) => {
       if (res.status === 400) {
-        throw new BadRequest('Не передано одно из полей');
+        throw new BadRequestError('Не передано одно из полей');
       }
       else if (res.status === 401) {
-        throw new NotAuth('Пользователь с таким email не найден');
+        throw new NotAuthorizedError('Пользователь с таким email не найден');
       }
       return res.json();
     })
@@ -53,15 +54,20 @@ export const register = (password, email) => fetch(`${baseUrl}/signup`, {
 
 // Отправляем запрос за получение токена
 
-  export const getContent = (token) => {
-    return fetch(`${baseUrl}/users/me`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+  export const getContent = (token) => fetch(`${baseUrl}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return res.json()
+          .then((err) => {
+            throw new NotAuthorizedError(err.message);
+          });
       }
+      return res.json()
     })
-    .then(res => res.json())
-    .then(data => data)
-  }
+    .then((data) => data);
