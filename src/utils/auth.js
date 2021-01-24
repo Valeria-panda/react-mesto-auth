@@ -2,7 +2,7 @@ import BadRequestError from '../errors/badRequestError';
 import NotAuthorizedError from '../errors/notAuthorizedError';
 
 // export const baseUrl = 'https://auth.nomoreparties.co';
-export const baseUrl = 'http://www.api.lera.students.nomoredomains.rocks';
+export const baseUrl = 'https://www.lera.students.nomoredomains.rocks';
 
 // запрос на регистрацию
 
