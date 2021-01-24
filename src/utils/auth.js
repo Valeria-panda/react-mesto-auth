@@ -3,7 +3,7 @@ import NotAuthorizedError from '../errors/notAuthorizedError';
 
 // export const baseUrl = 'https://auth.nomoreparties.co';
 
-export const BASE_URL = 'http://www.api.lera.students.nomoredomains.rocks';
+export const BASE_URL = 'http://www.lera.students.nomoredomains.rocks';
 
 // Отправляем запрос на регистрацию
 export const register = (password, email) => fetch(`${BASE_URL}/signup`, {
